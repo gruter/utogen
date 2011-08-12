@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<randomiser-instances>
+  <randomiser-instance name="DatesTill2010" randomiser-type="DateRandomiser">
+    <description>A simple date generatorwhich generates date starting from 1970-01-01 until the year 2010. When entering dates in From, To fields, the date should follow the format YYYY-MM-DD. You can change how the date appears using the date format</description>
+    <property name="rangesNum" value="1"/>
+    <property name="fromField0" value="1970-01-01"/>
+    <property name="toField0" value="2010-12-31"/>
+    <property name="percentField0" value="100"/>
+    <property name="nullField" value="0"/>
+    <property name="selectedDays" value="0000000"/>
+    <property name="dateFormat" value="yyyy-mm-dd"/>
+  </randomiser-instance>
+  <randomiser-instance name="EnglishFirstnames" randomiser-type="FirstnameRandomiser">
+    <description>The value of the seed is used to synchronise this generator with the emails generator. If you provide the same firstname seed in the emails generator, the emails generator will generate emails that contain part of the firstname that the EnglishFirstnames generator generates.</description>
+    <property name="nullField" value="0"/>
+    <property name="FirstnameSeedField" value="123"/>
+  </randomiser-instance>
+  <randomiser-instance name="EnglishLastnames" randomiser-type="LastnameRandomiser">
+    <description>The value of the seed is used to synchronise this generator with the emails generator. If you provide the same firstname seed in the emails generator, the emails generator will generate emails that contain part of the last name  that the EnglishLastnames generator generates.</description>
+    <property name="nullField" value="0"/>
+    <property name="LastnameSeedField" value="321"/>
+  </randomiser-instance>
+  <randomiser-instance name="EnglishText" randomiser-type="EnglishTextRandomiser">
+    <description>Pronounceable english text with the aid of a dictionary</description>
+    <property name="maxWidth" value="20"/>
+    <property name="minWidth" value="4"/>
+    <property name="punctuation" value="true"/>
+    <property name="nullField" value="0"/>
+  </randomiser-instance>
+  <randomiser-instance name="EnglishWords" randomiser-type="EnglishWordRandomiser">
+    <description>I had to develop this generator when I realised that I did not really like the EnglishTextRandomiser which tends to cut-off the last few letters.</description>
+    <property name="maxWidth" value="15"/>
+    <property name="minWidth" value="5"/>
+    <property name="punctuation" value="true"/>
+    <property name="nullField" value="0"/>
+  </randomiser-instance>
+  <randomiser-instance name="EmailSynch" randomiser-type="EmailRandomiser">
+    <description>Notice this instance of EmailRandomiser will be in sync with EnglishFirstnames and EnglishLastnames. This means that the generator here will actually generate emails that use the first name and the last name the other two generators have generated. This is achieved by using the same dictionaries and generating the same "random" sequence of choices.</description>
+    <property name="nullField" value="0"/>
+    <property name="FirstnameSeedField" value="123"/>
+    <property name="LastnameSeedField" value="321"/>
+  </randomiser-instance>
+  <randomiser-instance name="EnglishFullnames" randomiser-type="FullnameRandomiser">
+    <description>For now, this cannot be synchronised with the emails generator, but this is easy to achieve; I will work on it.</description>
+    <property name="includeTitle" value="true"/>
+    <property name="includeFirstName" value="true"/>
+    <property name="firstNameFull" value="true"/>
+    <property name="firstNameInitial" value="false"/>
+    <property name="includeInitialMiddle" value="false"/>
+    <property name="includeLastName" value="true"/>
+    <property name="nullField" value="0"/>
+  </randomiser-instance>
+  <randomiser-instance name="NonPronounceable" randomiser-type="StringRandomiser">
+    <description>Totally random</description>
+    <property name="maxWidth" value="10"/>
+    <property name="minWidth" value="3"/>
+    <property name="punctuation" value="false"/>
+    <property name="nullField" value="0"/>
+  </randomiser-instance>
+  <randomiser-instance name="OneHundredRandomNumbers" randomiser-type="NumIntegerRandomiser">
+    <description>101 to be precise...</description>
+    <property name="rangesNum" value="1"/>
+    <property name="fromField0" value="0"/>
+    <property name="toField0" value="100"/>
+    <property name="percentField0" value="100"/>
+    <property name="nullField" value="0"/>
+  </randomiser-instance>
+  <randomiser-instance name="Probability" randomiser-type="NumDoubleRandomiser">
+    <description>from 0 to 1</description>
+    <property name="rangesNum" value="1"/>
+    <property name="fromField0" value="0.0"/>
+    <property name="toField0" value="1.0"/>
+    <property name="percentField0" value="100"/>
+    <property name="Precision" value="3"/>
+    <property name="nullField" value="0"/>
+  </randomiser-instance>
+  <randomiser-instance name="SimpleBooleanNoNulls" randomiser-type="BooleanRandomiser">
+    <description>Just a simle boolean generator with no nulls</description>
+    <property name="trueField" value="50"/>
+    <property name="falseField" value="50"/>
+    <property name="nullField" value="0"/>
+  </randomiser-instance>
+  <randomiser-instance name="SimpleTime" randomiser-type="SQLTimeRandomiser">
+    <description>A simple</description>
+    <property name="rangesNum" value="1"/>
+    <property name="fromField0" value="00:00:00"/>
+    <property name="toField0" value="23:59:00"/>
+    <property name="percentField0" value="100"/>
+    <property name="nullField" value="0"/>
+  </randomiser-instance>
+  <randomiser-instance name="SimpleSequencer" randomiser-type="LongSequencer">
+    <description>A simple sequencer randomiser. Not really random, it will just count from 1 to as many as the number of the records you will generate.</description>
+    <property name="counterField" value="1"/>
+    <property name="nullField" value="0"/>
+  </randomiser-instance>
+  <randomiser-instance name="SimpleRandomString" randomiser-type="UniqueStringRandomiser">
+    <description>This could be more parameterised, but it is not... It will generate a string based on current time millis and it will concatenate it with a capital character, (in a rotational style) and an integer number (in an incremental style).</description>
+    <property name="nullField" value="0"/>
+  </randomiser-instance>
+  <randomiser-instance name="SQLDateTil2010" randomiser-type="SQLDateRandomiser">
+    <description>Notice there is no format here, the standard SQL format is followed: YYYY-MM-DD</description>
+    <property name="rangesNum" value="1"/>
+    <property name="fromField0" value="1970-01-01"/>
+    <property name="toField0" value="2010-12-31"/>
+    <property name="percentField0" value="100"/>
+    <property name="nullField" value="0"/>
+    <property name="selectedDays" value="0000000"/>
+  </randomiser-instance>
+  <randomiser-instance name="SQLTimestamp" randomiser-type="SQLTimestampRandomiser">
+    <description>A simple Timestamp following standard SQL format. You can also specify the time when adding values to the table</description>
+    <property name="rangesNum" value="1"/>
+    <property name="fromField0" value="1970-01-01 00:00:00.0"/>
+    <property name="toField0" value="2010-12-31 23:59:00.0"/>
+    <property name="percentField0" value="100"/>
+    <property name="nullField" value="0"/>
+    <property name="selectedDays" value="0000000"/>
+  </randomiser-instance>
+  <randomiser-instance name="EnglishText2" randomiser-type="EnglishTextRandomiserGeneric">
+    <description>An example of using a generator.panels.PanelGenericRandomiser; instead of building a panel for a new generator, you can use the PanelGenericRandomiser which allows you to set a value for any key. In this example, this panel is used for the EnglishTextRandomiserGeneric (which is the same as EnglishTextRandomiser).
+
+Simply set the keys-values that the EnglishTextRandomiser needs - of course you need to know what these keys are for each Randomiser, but the idea is that this Panel is used for quick and dirty testing of a new Randomiser.  NO V</description>
+    <property name="minWidth" value="4"/>
+    <property name="maxWidth" value="20"/>
+    <property name="punctuation" value="false"/>
+    <property name="nullField" value="0"/>
+  </randomiser-instance>
+  <randomiser-instance name="Probability_1" randomiser-type="NumDoubleRandomiser">
+    <description/>
+    <property name="rangesNum" value="1"/>
+    <property name="fromField0" value="0.0"/>
+    <property name="toField0" value="1.0"/>
+    <property name="percentField0" value="100"/>
+    <property name="Precision" value="-1"/>
+    <property name="nullField" value="0"/>
+  </randomiser-instance>
+  <randomiser-instance name="RegularExpressionUKCarPlates" randomiser-type="RegularExpressionRandomiser">
+    <description>These are not real UK car plates numbers! (plus the format may not always be correct!)</description>
+    <property name="maxWidth" value="20"/>
+    <property name="minWidth" value="1"/>
+    <property name="expression" value="[A-Z][0-9][0-9][0-9][A-Z][A-Z][A-Z]"/>
+    <property name="nullField" value="0"/>
+  </randomiser-instance>
+  <randomiser-instance name="RegularExpressionUKPostCodes" randomiser-type="RegularExpressionRandomiser">
+    <description>These are not real UK post codes! (plus the format may not always be correct!)</description>
+    <property name="maxWidth" value="20"/>
+    <property name="minWidth" value="1"/>
+    <property name="expression" value="[A-Z][A-Z]?[0-9] [0-9][A-Z][A-Z]"/>
+    <property name="nullField" value="0"/>
+  </randomiser-instance>
+  <randomiser-instance name="ListItems_Test" randomiser-type="ListitemsGenerator">
+    <description/>
+    <property name="inputSource" value="list"/>
+    <property name="rangesNum" value="4"/>
+    <property name="itemField0" value="test"/>
+    <property name="percentField0" value="10"/>
+    <property name="itemField1" value="test2"/>
+    <property name="percentField1" value="10"/>
+    <property name="itemField2" value="test3"/>
+    <property name="percentField2" value="10"/>
+    <property name="itemField3" value="test4"/>
+    <property name="percentField3" value="70"/>
+    <property name="nullField" value="0"/>
+  </randomiser-instance>
+  <randomiser-instance name="local" randomiser-type="DBColumnRandomiser">
+    <description>localdb</description>
+    <property name="driver" value="com.mysql.jdbc.Driver"/>
+    <property name="connUrl" value="jdbc:mysql://localhost:3306/test?useUnicode=true&amp;amp;characterEncoding=UTF-8"/>
+    <property name="userId" value="root"/>
+    <property name="password" value="1234"/>
+    <property name="query" value="select USERID from T_TWIT_USER"/>
+    <property name="maxItems" value="10000"/>
+  </randomiser-instance>
+  <randomiser-instance name="CLOSE_TYPE" randomiser-type="ListitemsGenerator">
+    <description>sdafdsafsd</description>
+    <property name="inputSource" value="list"/>
+    <property name="rangesNum" value="5"/>
+    <property name="itemField0" value="0"/>
+    <property name="percentField0" value="60"/>
+    <property name="itemField1" value="1"/>
+    <property name="percentField1" value="30"/>
+    <property name="itemField2" value="2"/>
+    <property name="percentField2" value="2"/>
+    <property name="itemField3" value="3"/>
+    <property name="percentField3" value="3"/>
+    <property name="itemField4" value="4"/>
+    <property name="percentField4" value="5"/>
+    <property name="nullField" value="0"/>
+  </randomiser-instance>
+  <randomiser-instance name="systemtime" randomiser-type="DateRandomiser">
+    <description>fdsaf</description>
+    <property name="rangesNum" value="0"/>
+    <property name="nullField" value="0"/>
+    <property name="selectedDays" value="0000000"/>
+    <property name="dateFormat" value="yyyy-MM-dd"/>
+    <property name="systemTime" value="true"/>
+  </randomiser-instance>
+</randomiser-instances>

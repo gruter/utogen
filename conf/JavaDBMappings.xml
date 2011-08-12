@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="MacRoman"?>
+
+<!--
+    Document   : JavaDBMappings.xml
+    Created on : December 21, 2008, 8:12 PM
+    Author     : michael
+    Description:
+    Purpose of the document follows.
+-->
+
+<database>
+
+         <!-- Each randomiser generates a certain java type.
+              It is necessary to know which java types can be assigned to which db-specific types.
+              So, for example, a java.lang.Byte is small enough to fit into a range of db-specific types (SHORT, INT, INTEGER, BIGINT, etc).
+              On the contrary, a java.lang.Integer cannot be assigned to a MySQL TINYINT -->
+
+         <java-mapping name="java.lang.Boolean">
+            <db-type>bit</db-type>
+            <db-type>tinyint</db-type>
+            <db-type>bool</db-type>
+            <db-type>boolean</db-type>
+         </java-mapping>
+
+
+         <java-mapping name="java.lang.String">
+            <db-type>char</db-type>
+            <db-type>longtext</db-type>
+            <db-type>longvarchar</db-type>
+            <db-type>mediumtext</db-type>
+            <db-type>text</db-type>
+            <db-type>tinytext</db-type>
+            <db-type>varchar</db-type>
+         </java-mapping>
+
+         <java-mapping name="java.lang.Integer">
+            <db-type>double</db-type>
+            <db-type>float</db-type>
+            <db-type>bigint</db-type>
+            <db-type>int</db-type>
+            <db-type>integer</db-type>
+            <db-type>mediumint</db-type>
+            <db-type>real</db-type>
+         </java-mapping>
+
+         <java-mapping name="java.lang.Byte">
+            <db-type>byte</db-type>
+            <db-type>bigint</db-type>
+            <db-type>double</db-type>
+            <db-type>float</db-type>
+            <db-type>int</db-type>
+            <db-type>integer</db-type>
+            <db-type>mediumint</db-type>
+            <db-type>tinyint</db-type>
+         </java-mapping>
+
+         <java-mapping name="java.lang.Short">
+            <db-type>bigint</db-type>
+            <db-type>double</db-type>
+            <db-type>float</db-type>
+            <db-type>int</db-type>
+            <db-type>integer</db-type>
+            <db-type>mediumint</db-type>
+            <db-type>tinyint</db-type>
+         </java-mapping>
+
+         <java-mapping name="java.lang.Float">
+         	<db-type>decimal</db-type>
+            <db-type>double</db-type>
+            <db-type>float</db-type>
+            <db-type>numeric</db-type>
+            <db-type>real</db-type>
+         </java-mapping>
+
+         <java-mapping name="java.lang.Double">
+         	<db-type>decimal</db-type>
+            <db-type>double</db-type>
+            <db-type>float</db-type>
+            <db-type>numeric</db-type>
+            <db-type>real</db-type>
+         </java-mapping>
+
+         <java-mapping name="java.lang.BigDecimal">
+         	<db-type>decimal</db-type>
+            <db-type>double</db-type>
+            <db-type>float</db-type>
+            <db-type>numeric</db-type>
+            <db-type>real</db-type>
+         </java-mapping>
+
+         <java-mapping name="java.lang.date">
+            <db-type>date</db-type>
+            <db-type>datetime</db-type>
+            <db-type>timestamp</db-type>
+         </java-mapping>
+
+         <java-mapping name="java.lang.DateTime">
+            <db-type>datetime</db-type>
+            <db-type>timestamp</db-type>
+         </java-mapping>
+</database>

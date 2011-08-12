@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "C:\jpack\logging-log4j-1.2.13\src\java\org\apache\log4j\xml\log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+    
+    <appender name="ConsoleAppender" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{MM-dd HH:mm:ss SSS} %p %t %c{2}.%M() : %m%n" />
+        </layout>	 
+    </appender>
+
+    <appender name="engine" class="org.apache.log4j.RollingFileAppender">
+	 <param name="File"   value="engine.log" />
+	 <param name="Append" value="true"/> 
+	 <param name="MaxFileSize" value="10000KB"/> 
+	 <param name="MaxBackupIndex" value="5"/>             
+	 <layout class="org.apache.log4j.PatternLayout">
+	       <param name="ConversionPattern" value="%d{MM-dd HH:mm:ss SSS} %p %t %c{2}.%M() : %m%n" />
+	 </layout>        
+    </appender>    
+    
+    <category name="generator" additivity="false">
+        <priority value="info" />
+        <appender-ref ref="ConsoleAppender" />
+        <appender-ref ref="engine" />
+    </category>	
+
+    <category name="generator.engine" additivity="false">
+        <priority value="info" />
+        <appender-ref ref="ConsoleAppender" />
+        <appender-ref ref="engine" />
+    </category>	
+
+    <category name="generator.engine.db" additivity="false">
+        <priority value="info" />
+        <appender-ref ref="ConsoleAppender" />
+        <appender-ref ref="engine" />
+    </category>
+
+    <category name="generator.jarloader" additivity="false">
+        <priority value="info" />
+        <appender-ref ref="ConsoleAppender" />
+    </category>	
+
+    <!--START databene debug info -->    
+    <category name="org.databene" additivity="false">
+        <priority value="fatal" />
+        <appender-ref ref="ConsoleAppender" />
+    </category>
+    <!--END: databene debug info -->    
+
+
+    <root>
+        <priority value ="info" />
+        <appender-ref ref="ConsoleAppender"/>    
+    </root>
+    
+    
+</log4j:configuration> 

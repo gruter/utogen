@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<randomiser-types>
+    <randomiser-type name="BooleanRandomiser" jtype="1" panel="generator.panels.PanelBooleanRandomiser" generator="generator.randomisers.BooleanRandomiser"/>
+    <randomiser-type name="DateRandomiser" jtype="8" panel="generator.panels.PanelDateRandomiser" generator="generator.randomisers.DateRandomiser"/>
+    <randomiser-type name="FirstnameRandomiser" jtype="0" panel="generator.panels.PanelFirstnameRandomiser" generator="generator.randomisers.FirstnameRandomiser"/>    
+    <randomiser-type name="EmailRandomiser" jtype="0" panel="generator.panels.PanelEmailRandomiser" generator="generator.randomisers.EmailRandomiser"/>    
+    <randomiser-type name="EnglishTextRandomiser" jtype="0" panel="generator.panels.PanelEnglishTextRandomiser" generator="generator.randomisers.EnglishTextRandomiser"/>
+    <randomiser-type name="EnglishWordRandomiser" jtype="0" panel="generator.panels.PanelEnglishWordRandomiser" generator="generator.randomisers.EnglishWordRandomiser"/>    
+    <randomiser-type name="FullnameRandomiser" jtype="0" panel="generator.panels.PanelFullnameRandomiser" generator="generator.randomisers.FullnameRandomiser"/>    
+    <randomiser-type name="LastnameRandomiser" jtype="0" panel="generator.panels.PanelLastnameRandomiser" generator="generator.randomisers.LastnameRandomiser"/>       
+    <randomiser-type name="ListitemsGenerator" jtype="0" panel="generator.panels.PanelListItemRandomiser" generator="generator.randomisers.ListRandomiser"/>    
+    <randomiser-type name="ListitemsSequencer" jtype="0" panel="generator.panels.PanelListItemsSequencer" generator="generator.randomisers.ListItemsSequencer"/>            
+    <randomiser-type name="LongSequencer" jtype="4" panel="generator.panels.PanelLongSequencer" generator="generator.randomisers.LongSequencer"/>    
+    <randomiser-type name="NumIntegerRandomiser" jtype="3" panel="generator.panels.PanelNumIntegerRandomiser" generator="generator.randomisers.NumIntegerRandomiser"/>
+    <randomiser-type name="NumDoubleRandomiser" jtype="6" panel="generator.panels.PanelNumDoubleRandomiser" generator="generator.randomisers.NumDoubleRandomiser"/>
+    <randomiser-type name="NumFloatRandomiser"  jtype="5" panel="generator.panels.PanelNumFloatRandomiser" generator="generator.randomisers.NumFloatRandomiser"/>
+    <randomiser-type name="NumLongRandomiser"  jtype="4" panel="generator.panels.PanelNumLongRandomiser" generator="generator.randomisers.NumLongRandomiser"/>        
+    <randomiser-type name="SQLDateRandomiser" jtype="8" panel="generator.panels.PanelSQLDateRandomiser" generator="generator.randomisers.SQLDateRandomiser"/>
+    <randomiser-type name="SQLTimestampRandomiser" jtype="10" panel="generator.panels.PanelSQLTimestampRandomiser" generator="generator.randomisers.SQLTimestampRandomiser"/>
+    <randomiser-type name="SQLTimeRandomiser" jtype="9" panel="generator.panels.PanelSQLTimeRandomiser" generator="generator.randomisers.SQLTimeRandomiser"/>
+    <randomiser-type name="StringRandomiser" jtype="0" panel="generator.panels.PanelStringRandomiser" generator="generator.randomisers.StringRandomiser"/>           
+    <randomiser-type name="UniqueStringRandomiser" jtype="0" panel="generator.panels.PanelUniqueStringRandomiser" generator="generator.randomisers.UniqueStringRandomiser"/>    
+
+    <randomiser-type name="RegularExpressionRandomiser" jtype="0" panel="generator.panels.PanelRegularExpressionRandomiser" generator="generator.randomisers.RegularExpressionRandomiser"/> 
+    <randomiser-type name="EnglishTextRandomiserGeneric" jtype="0" panel="generator.panels.PanelGenericRandomiser" generator="generator.randomisers.EnglishTextRandomiser"/>
+    <randomiser-type name="SeasonalData" jtype="0" panel="generator.panels.PanelSeasonalDataObjectRandomiser" generator="generator.panels.SeasonalDataObjectRandomiser"/>
+    <randomiser-type name="DBColumnRandomiser" jtype="0" panel="com.gruter.generator.randomisers.PanelDBColumnRandomiser" generator="com.gruter.generator.randomisers.DBColumnRandomiser"/>
+</randomiser-types>

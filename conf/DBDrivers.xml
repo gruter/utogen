@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<dbdrivers>
+  <driver>
+    <name>Cache</name>
+    <Connection>jdbc:Cache://</Connection>
+    <Loadclass>com.intersys.jdbc.CacheDriver</Loadclass>
+    <location>dbdrivers\this.jar</location>
+    <status>2</status>
+    <CharDelim>'</CharDelim>
+    <DateDelim>str_to_date('value', '%Y-%m-%d')</DateDelim>
+    <TimeDelim/>
+    <TimestampDelim/>
+  </driver>
+  <driver>
+    <name>Daffodil DB</name>
+    <Connection>jdbc:daffodilDB://</Connection>
+    <Loadclass>in.co.daffodil.db.rmi.RmiDaffodilDBDriver</Loadclass>
+    <location>dbdrivers\this.jar</location>
+    <status>2</status>
+    <CharDelim>'</CharDelim>
+    <DateDelim>str_to_date('value', '%Y-%m-%d')</DateDelim>
+    <TimeDelim/>
+    <TimestampDelim/>
+  </driver>
+  <driver>
+    <name>DB2 UDB</name>
+    <Connection>jdbc:db2://</Connection>
+    <Loadclass>com.ibm.db2.jcc.DB2Driver</Loadclass>
+    <location>dbdrivers\this.jar</location>
+    <status>2</status>
+    <CharDelim>'</CharDelim>
+    <DateDelim>str_to_date('value', '%Y-%m-%d')</DateDelim>
+    <TimeDelim/>
+    <TimestampDelim/>
+  </driver>
+  <driver>
+    <name>JavaDB/Derby server</name>
+    <Connection>jdbc:derby:net://</Connection>
+    <Loadclass>org.apache.derby.jdbc.ClientDriver</Loadclass>
+    <location>dbdrivers\this.jar</location>
+    <status>2</status>
+    <CharDelim>'</CharDelim>
+    <DateDelim>str_to_date('value', '%Y-%m-%d')</DateDelim>
+    <TimeDelim/>
+    <TimestampDelim/>
+  </driver>
+  <driver>
+    <name>JavaDB/Derby embedded</name>
+    <Connection>jdbc:derby:</Connection>
+    <Loadclass>org.apache.derby.jdbc.EmbeddedDriver</Loadclass>
+    <location>dbdrivers\this.jar</location>
+    <status>2</status>
+    <CharDelim>'</CharDelim>
+    <DateDelim>str_to_date('value', '%Y-%m-%d')</DateDelim>
+    <TimeDelim/>
+    <TimestampDelim/>
+  </driver>
+  <driver>
+    <name>FrontBase</name>
+    <Connection>jdbc:FrontBase://</Connection>
+    <Loadclass>jdbc.FrontBase.FBJDriver</Loadclass>
+    <location>dbdrivers\this.jar</location>
+    <status>2</status>
+    <CharDelim>'</CharDelim>
+    <DateDelim>str_to_date('value', '%Y-%m-%d')</DateDelim>
+    <TimeDelim/>
+    <TimestampDelim/>
+  </driver>
+  <driver>
+    <name>HSQLDB server</name>
+    <Connection>jdbc:hsqldb:hsql://</Connection>
+    <Loadclass>org.hsqldb.jdbcDriver</Loadclass>
+    <location>dbdrivers\this.jar</location>
+    <status>2</status>
+    <CharDelim>'</CharDelim>
+    <DateDelim>str_to_date('value', '%Y-%m-%d')</DateDelim>
+    <TimeDelim/>
+    <TimestampDelim/>
+  </driver>
+  <driver>
+    <name>IBM AS/400</name>
+    <Connection>jdbc:as400://</Connection>
+    <Loadclass>com.ibm.as400.access.AS400JDBCDriver</Loadclass>
+    <location>dbdrivers\this.jar</location>
+    <status>2</status>
+    <CharDelim>'</CharDelim>
+    <DateDelim>str_to_date('value', '%Y-%m-%d')</DateDelim>
+    <TimeDelim/>
+    <TimestampDelim/>
+  </driver>
+  <driver>
+    <name>Informix</name>
+    <Connection>jdbc:informix-sqli://</Connection>
+    <Loadclass>com.informix.jdbc.IfxDriver</Loadclass>
+    <location>dbdrivers\this.jar</location>
+    <status>2</status>
+    <CharDelim>'</CharDelim>
+    <DateDelim>str_to_date('value', '%Y-%m-%d')</DateDelim>
+    <TimeDelim/>
+    <TimestampDelim/>
+  </driver>
+  <driver>
+    <name>JDataStore</name>
+    <Connection>jdbc:borland:dslocal:</Connection>
+    <Loadclass>com.borland.datastore.jdbc.DataStoreDriver</Loadclass>
+    <location>dbdrivers\this.jar</location>
+    <status>2</status>
+    <CharDelim>'</CharDelim>
+    <DateDelim>str_to_date('value', '%Y-%m-%d')</DateDelim>
+    <TimeDelim/>
+    <TimestampDelim/>
+  </driver>
+  <driver>
+    <name>JDBC/ODBC Bridge</name>
+    <Connection>jdbc:odbc:</Connection>
+    <Loadclass>sun.jdbc.odbc.JdbcOdbcDriver</Loadclass>
+    <location>dbdrivers\this.jar</location>
+    <status>2</status>
+    <CharDelim>'</CharDelim>
+    <DateDelim>str_to_date('value', '%Y-%m-%d')</DateDelim>
+    <TimeDelim/>
+    <TimestampDelim/>
+  </driver>
+  <driver>
+    <name>McKoi</name>
+    <Connection>jdbc:mckoi://</Connection>
+    <Loadclass>com.mckoi.JDBCDriver</Loadclass>
+    <location>dbdrivers\this.jar</location>
+    <status>2</status>
+    <CharDelim>'</CharDelim>
+    <DateDelim>str_to_date('value', '%Y-%m-%d')</DateDelim>
+    <TimeDelim/>
+    <TimestampDelim/>
+  </driver>
+  <driver>
+    <name>Mimer</name>
+    <Connection>jdbc:mimer:</Connection>
+    <Loadclass>com.mimer.jdbc.Driver</Loadclass>
+    <location>dbdrivers\this.jar</location>
+    <status>2</status>
+    <CharDelim>'</CharDelim>
+    <DateDelim>str_to_date('value', '%Y-%m-%d')</DateDelim>
+    <TimeDelim/>
+    <TimestampDelim/>
+  </driver>
+  <driver>
+    <name>MySQL</name>
+    <Connection>jdbc:mysql://</Connection>
+    <Loadclass>com.mysql.jdbc.Driver</Loadclass>
+    <location>/Users/michael/NetBeansProjects/javalibs/mysql-connector-java-3.0.17-ga/mysql-connector-java-3.0.17-ga/mysql-connector-java-3.0.17-ga-bin.jar</location>
+    <status>1</status>
+    <CharDelim>'</CharDelim>
+    <DateDelim>str_to_date('$VALUE', '%Y-%m-%d')</DateDelim>
+    <TimeDelim>str_to_date('$VALUE', '%Y-%m-%d')</TimeDelim>
+    <TimestampDelim>str_to_date('$VALUE', '%Y-%m-%d')</TimestampDelim>
+  </driver>
+  <driver>
+    <name>Oracle OCI</name>
+    <Connection>jdbc:oracle:oci:@</Connection>
+    <Loadclass>oracle.jdbc.OracleDriver</Loadclass>
+    <location>dbdrivers\this.jar</location>
+    <status>2</status>
+    <CharDelim>'</CharDelim>
+    <DateDelim>str_to_date('value', '%Y-%m-%d')</DateDelim>
+    <TimeDelim/>
+    <TimestampDelim/>
+  </driver>
+  <driver>
+    <name>Pervasive</name>
+    <Connection>jdbc:pervasive://</Connection>
+    <Loadclass>pervasive.jdbc.PervasiveDriver</Loadclass>
+    <location>dbdrivers\this.jar</location>
+    <status>2</status>
+    <CharDelim>'</CharDelim>
+    <DateDelim>str_to_date('value', '%Y-%m-%d')</DateDelim>
+    <TimeDelim/>
+    <TimestampDelim/>
+  </driver>
+  <driver>
+    <name>Pointbase server</name>
+    <Connection>jdbc:pointbase:server://</Connection>
+    <Loadclass>com.pointbase.jdbc.jdbcUniversalDriver</Loadclass>
+    <location>dbdrivers\this.jar</location>
+    <status>2</status>
+    <CharDelim>'</CharDelim>
+    <DateDelim>str_to_date('value', '%Y-%m-%d')</DateDelim>
+    <TimeDelim/>
+    <TimestampDelim/>
+  </driver>
+  <driver>
+    <name>Pointbase embedded</name>
+    <Connection>jdbc:pointbase:embedded:</Connection>
+    <Loadclass>com.pointbase.jdbc.jdbcUniversalDriver</Loadclass>
+    <location>dbdrivers\this.jar</location>
+    <status>2</status>
+    <CharDelim>'</CharDelim>
+    <DateDelim>str_to_date('value', '%Y-%m-%d')</DateDelim>
+    <TimeDelim/>
+    <TimestampDelim/>
+  </driver>
+  <driver>
+    <name>PostgreSQL</name>
+    <Connection>jdbc:postgresql://</Connection>
+    <Loadclass>org.postgresql.Driver</Loadclass>
+    <location>dbdrivers\this.jar</location>
+    <status>2</status>
+    <CharDelim>'</CharDelim>
+    <DateDelim>str_to_date('value', '%Y-%m-%d')</DateDelim>
+    <TimeDelim/>
+    <TimestampDelim/>
+  </driver>
+  <driver>
+    <name>Progress</name>
+    <Connection>jdbc:jdbcProgress:T:</Connection>
+    <Loadclass>com.progress.sql.jdbc.JdbcProgressDriver</Loadclass>
+    <location>dbdrivers\this.jar</location>
+    <status>2</status>
+    <CharDelim>'</CharDelim>
+    <DateDelim>str_to_date('value', '%Y-%m-%d')</DateDelim>
+    <TimeDelim/>
+    <TimestampDelim/>
+  </driver>
+  <driver>
+    <name>MaxDB</name>
+    <Connection>jdbc:sapdb://</Connection>
+    <Loadclass>com.sap.dbtech.jdbc.DriverSapDB</Loadclass>
+    <location>dbdrivers\this.jar</location>
+    <status>2</status>
+    <CharDelim>'</CharDelim>
+    <DateDelim>str_to_date('value', '%Y-%m-%d')</DateDelim>
+    <TimeDelim/>
+    <TimestampDelim/>
+  </driver>
+  <driver>
+    <name>SQL Server (Microsoft JDBC Driver)</name>
+    <Connection>jdbc:microsoft:sqlserver://</Connection>
+    <Loadclass>com.microsoft.jdbc.sqlserver.SQLServerDriver</Loadclass>
+    <location>dbdrivers\this.jar</location>
+    <status>2</status>
+    <CharDelim>'</CharDelim>
+    <DateDelim>str_to_date('value', '%Y-%m-%d')</DateDelim>
+    <TimeDelim/>
+    <TimestampDelim/>
+  </driver>
+  <driver>
+    <name>SQL Server 2005 (Microsoft JDBC Driver)</name>
+    <Connection>jdbc:sqlserver://</Connection>
+    <Loadclass>com.microsoft.sqlserver.jdbc.SQLServerDriver</Loadclass>
+    <location>dbdrivers\this.jar</location>
+    <status>2</status>
+    <CharDelim>'</CharDelim>
+    <DateDelim>str_to_date('value', '%Y-%m-%d')</DateDelim>
+    <TimeDelim/>
+    <TimestampDelim/>
+  </driver>
+  <driver>
+    <name>SQL Server (jTDS)</name>
+    <Connection>jdbc:jtds:sqlserver://</Connection>
+    <Loadclass>net.sourceforge.jtds.jdbc.Driver</Loadclass>
+    <location>dbdrivers\this.jar</location>
+    <status>2</status>
+    <CharDelim>'</CharDelim>
+    <DateDelim>str_to_date('value', '%Y-%m-%d')</DateDelim>
+    <TimeDelim/>
+    <TimestampDelim/>
+  </driver>
+  <driver>
+    <name>SQL Server (DataDirect)</name>
+    <Connection>jdbc:datadirect:sqlserver://</Connection>
+    <Loadclass>com.ddtek.jdbc.sqlserver.SQLServerDriver</Loadclass>
+    <location>dbdrivers\this.jar</location>
+    <status>2</status>
+    <CharDelim>'</CharDelim>
+    <DateDelim>str_to_date('value', '%Y-%m-%d')</DateDelim>
+    <TimeDelim/>
+    <TimestampDelim/>
+  </driver>
+  <driver>
+    <name>Sybase ASE (JConnect)</name>
+    <Connection>jdbc:sybase:Tds:</Connection>
+    <Loadclass>com.sybase.jdbc3.jdbc.SybDriver</Loadclass>
+    <location>dbdrivers\this.jar</location>
+    <status>2</status>
+    <CharDelim>'</CharDelim>
+    <DateDelim>str_to_date('value', '%Y-%m-%d')</DateDelim>
+    <TimeDelim/>
+    <TimestampDelim/>
+  </driver>
+  <driver>
+    <name>Sybase SQL Anywhere (JConnect)</name>
+    <Connection>jdbc:sybase:Tds:</Connection>
+    <Loadclass>com.sybase.jdbc3.jdbc.SybDriver</Loadclass>
+    <location>dbdrivers\this.jar</location>
+    <status>2</status>
+    <CharDelim>'</CharDelim>
+    <DateDelim>str_to_date('value', '%Y-%m-%d')</DateDelim>
+    <TimeDelim/>
+    <TimestampDelim/>
+  </driver>
+  <driver>
+    <name>OracleThin</name>
+    <Connection>jdbc:oracle:thin:system/db@password</Connection>
+    <Loadclass>oracle.jdbc.driver.OracleDriver</Loadclass>
+    <location>dbdrivers\this.jar</location>
+    <status>2</status>
+    <CharDelim>'</CharDelim>
+    <DateDelim>str_to_date('value', '%Y-%m-%d')</DateDelim>
+    <TimeDelim/>
+    <TimestampDelim/>
+  </driver>
+</dbdrivers>
