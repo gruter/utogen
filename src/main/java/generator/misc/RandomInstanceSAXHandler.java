@@ -106,4 +106,14 @@ public class RandomInstanceSAXHandler extends SAXDataHandler
         logger.debug("Returning vector, size is:"+vRandomInstances.size());
         return vRandomInstances;
     }
+
+    @Override
+    public void endDocument() throws SAXException {
+      RandomiserInstance expressionRi = new RandomiserInstance();
+      expressionRi.setName("_expression");
+      expressionRi.setRandomiserType("ExpressionRandomiser");
+      vRandomInstances.add(expressionRi);
+
+      super.endDocument();
+    }
 }

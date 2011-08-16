@@ -8,10 +8,19 @@ import generator.misc.DataFileItem;
 import generator.misc.RandomiserType;
 import generator.misc.Utils;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Vector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.vedantatree.expressionoasis.ExpressionContext;
+import org.vedantatree.expressionoasis.ExpressionEngine;
+import org.vedantatree.expressionoasis.exceptions.ExpressionEngineException;
 
 public class Generator {
   private Map<String, RandomiserType> randomiserTypes = new HashMap<String, RandomiserType>();
@@ -22,7 +31,11 @@ public class Generator {
 
   private long numOfRecords;
 
-  public Generator(DataFileDefinition dfd) {
+  private ExpressionContext expressionContext;
+  
+  private Map<Integer, List<String>> variables = new HashMap<Integer, List<String>>();
+  
+  public Generator(DataFileDefinition dfd) throws Exception {
     Utils utils = new Utils();
     Vector<RandomiserType> randomiserTypes = utils.loadRandomiserTypes();
     if(randomiserTypes == null || randomiserTypes.size() == 0) {
@@ -41,11 +54,16 @@ public class Generator {
       this.randomiserInstances.put(eachInstance.getName(), eachInstance);
     }
     this.dfd = dfd;
-    randomGnerator = new IRandomiserFunctionality[dfd.getOutDataItems().size()];
+    this.randomGnerator = new IRandomiserFunctionality[dfd.getOutDataItems().size()];
+    try {
+      this.expressionContext = new ExpressionContext();
+    } catch (ExpressionEngineException e) {
+      e.printStackTrace();
+    }
     init();
   }
 
-  private void init() {
+  private void init() throws Exception{
     Utils utils = new Utils();
     int index = 0;
     try {
@@ -63,7 +81,25 @@ public class Generator {
           System.out.println(new Date() + " ERROR:" + errorMessage);
           return;
         }
-  
+        if("_expression".equals(eachItem.getRandomiserInstanceName())) {
+          Pattern  p = Pattern.compile("(\\$[\\w]+)");
+          //String expr = "$f1 + $myTest2 : $f3 = f1234 >= $f2134";
+          String expr = eachItem.getExpression();
+          if(expr == null) {
+            throw new IOException("No expression:" + eachItem.getFieldName());
+          }
+          Matcher matcher = p.matcher(expr);
+          List<String> exprFields = new ArrayList<String>();
+          System.out.print("variables:");
+          while(matcher.find()) {
+            String variable = expr.substring(matcher.start(), matcher.end());
+            exprFields.add(variable);
+            System.out.print("[" + variable + "]");
+          }
+          System.out.println();
+          variables.put(index, exprFields);
+        }
+        
         // load and store the generator, set its RI, now it is ready to use
         randomGnerator[index] = (IRandomiserFunctionality) utils.createObject(rt.getGenerator());
         randomGnerator[index].setRandomiserInstance(ri);
@@ -83,38 +119,69 @@ public class Generator {
     if (dfd.getTotalRecords() > 0 && numOfRecords >= dfd.getTotalRecords()) {
       return null;
     }
-    StringBuffer sb = new StringBuffer();
+    
+    Map<String, String> generatedFields = new HashMap<String, String>();
+    
     int index = 0;
-    
-    String delimiter = "";
-    String dfdDelimiter = dfd.getDelimiter();
-    if("\\t".equals(dfdDelimiter)) {
-      dfdDelimiter = "\t";
-    }
-    
     for (DataFileItem eachItem : dfd.getOutDataItems()) {
-      sb.append(delimiter);
-      // retrieve format parameters for this generator
       Object objValue = randomGnerator[index].generate();
       if (objValue == null) {
         objValue = "";
       }
-      String temp = objValue.toString();
+      generatedFields.put(eachItem.getFieldName(), objValue.toString());
+      index++;
+    }
 
-      String enclChar = eachItem.getEncloseChar();
-      if (temp.length() < eachItem.getWidth()) {
-        if (eachItem.getAlignment() == Constants.ALIGN_LEFT)
-          temp = padRight(temp, eachItem.getWidth());
-        else if (eachItem.getAlignment() == Constants.ALIGN_RIGHT)
-          temp = padLeft(temp, eachItem.getWidth());
-        else
-          temp = padCenter(temp, eachItem.getWidth());
+    StringBuffer sb = new StringBuffer();
+    
+    String dfdDelimiter = dfd.getDelimiter();
+    if("\\t".equals(dfdDelimiter)) {
+      dfdDelimiter = "\t";
+    }
+    String delimiter = "";
+    index = -1;
+    for (DataFileItem eachItem : dfd.getOutDataItems()) {
+      index++;
+      if(eachItem.getDummy() != null && eachItem.getDummy().equalsIgnoreCase("true")) {
+        continue;
       }
+      String outputValue = null;
+      if("_expression".equals(eachItem.getRandomiserInstanceName())) {
+        String expression = eachItem.getExpression();
+        
+        List<String> variableList = variables.get(index);
+        
+        for(String eachVariable: variableList) {
+          String variableField = eachVariable.substring(1);   //remove $
+          //System.out.println(">>>>>" + eachVariable);
+          expression = expression.replace(eachVariable, generatedFields.get(variableField));
+        }
+        try {
+//          System.out.println("expression:" + expression);
+          Object exprResult = ExpressionEngine.evaluate(expression, expressionContext);
+          outputValue = exprResult.toString();
+        } catch (ExpressionEngineException e) {
+          e.printStackTrace();
+          outputValue = "expression:" + expression + ":" + e.getMessage();
+        }
+      } else {
+        outputValue = generatedFields.get(eachItem.getFieldName());
+      }
+      if (outputValue.length() < eachItem.getWidth()) {
+        if (eachItem.getAlignment() == Constants.ALIGN_LEFT) {
+          outputValue = padRight(outputValue, eachItem.getWidth());
+        } else if (eachItem.getAlignment() == Constants.ALIGN_RIGHT) {
+          outputValue = padLeft(outputValue, eachItem.getWidth());
+        } else {
+          outputValue = padCenter(outputValue, eachItem.getWidth());
+        }
+      }
+      String enclChar = eachItem.getEncloseChar();
+      sb.append(delimiter);
       sb.append(enclChar);
-      sb.append(temp);
+      sb.append(outputValue);
       sb.append(enclChar);
       delimiter = dfdDelimiter;
-      index++;
     }
     
     return sb.toString();
@@ -124,8 +191,9 @@ public class Generator {
     int pad = width - s.length();
     String temp = "", retValue;
 
-    for (int i = 0; i < pad; i++)
+    for (int i = 0; i < pad; i++) {
       temp = temp + " ";
+    }
     retValue = temp + s;
 
     return retValue;
@@ -135,8 +203,9 @@ public class Generator {
     int pad = width - s.length();
     String temp = "", retValue;
 
-    for (int i = 0; i < pad; i++)
+    for (int i = 0; i < pad; i++) {
       temp = temp + " ";
+    }
     retValue = s + temp;
 
     return retValue;
@@ -147,17 +216,44 @@ public class Generator {
     int pad = (width - s.length()) / 2; // [*] tricky integer division :P
     String temp = "", retValue;
 
-    for (int i = 0; i < pad; i++)
+    for (int i = 0; i < pad; i++) {
       temp = temp + " ";
+    }
     retValue = temp + s + temp;
-    if (retValue.length() < width)
+    if (retValue.length() < width) {
       retValue = " " + retValue;
-    else if (retValue.length() > width)
+    } else if (retValue.length() > width) {
       retValue = retValue.substring(0, retValue.length() - 1);
+    }
     return retValue;
   }
 
   public String getErrorMessage() {
     return errorMessage;
+  }
+  
+  public static void main(String[] args) throws Exception {
+//    Pattern  p = Pattern.compile("(\\$[\\w]+)");
+//    String expr = "$f1 + $myTest2 : $f3 = f1234 >= $f2134";
+//    Matcher matcher = p.matcher(expr);
+//    while(matcher.find()) {
+//      String v = expr.substring(matcher.start(), matcher.end());
+//      System.out.println("[" + v + "]");
+//    }
+    
+//    expr = expr.replace("$f1", "false");
+//    expr = expr.replace("$f2", "'12345'");
+//    expr = expr.replace("$f3", "'56789'");
+    
+    ExpressionContext expressionContext = new ExpressionContext();
+    String expr = "true ? 10 : 'Mari'";
+    Object exprResult = ExpressionEngine.evaluate(expr, expressionContext);
+    System.out.println(exprResult.getClass() + "," + exprResult);
+    
+//    String f1 = "false";
+//    String f1Name = "$f1";
+//    String expr = "$f1 ? $f2 : $f3";
+//    
+//    System.out.println(">>>>" + expr.replace(f1Name, f1));
   }
 }

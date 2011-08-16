@@ -229,6 +229,15 @@ public class Utils {
     attribValue = prop.getAttribute("randomiser-instance");
     dataItem.setRandomiserInstanceName(attribValue);
     
+    attribValue = prop.getAttribute("dummy");
+    dataItem.setDummy(attribValue);
+
+    attribValue = prop.getAttribute("expression");
+    if(attribValue == null) {
+      attribValue = "";
+    }
+    dataItem.setExpression(attribValue);
+
     try {
         attribValue = prop.getAttribute("width");
         dataItem.setWidth(Integer.parseInt(attribValue));

@@ -109,6 +109,10 @@ public class FileOutDataSaver
         elemDataItem.setAttribute("width",""+dataItem.getWidth());
         elemDataItem.setAttribute("encloseChar",dataItem.getEncloseChar());
         elemDataItem.setAttribute("alignment",""+dataItem.getAlignment());
+        elemDataItem.setAttribute("dummy",""+dataItem.getDummy());
+        if("_expression".equals(dataItem.getRandomiserInstanceName())) {
+          elemDataItem.setAttribute("expression","" + dataItem.getExpression());
+        }
         
         elemDFD.appendChild(elemDataItem);
         logger.debug("added a data-item element");        

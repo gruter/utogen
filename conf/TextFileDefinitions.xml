@@ -11,14 +11,15 @@
   log4j.appender.MyApp.layout.ConversionPattern=%d{dd HH:mm:ss} %p %t %c{2}.%M(): %m%n
   log4j.logger.test_1=DEBUG, MyApp
     </log4j>
-    <data-item alignment="1" encloseChar="" fieldName="f1" randomiser-instance="SimpleSequencer" width="-1"/>
-    <data-item alignment="1" encloseChar="" fieldName="f2" randomiser-instance="EnglishFirstnames" width="-1"/>
-    <data-item alignment="1" encloseChar="" fieldName="f3" randomiser-instance="EnglishLastnames" width="-1"/>
-    <data-item alignment="1" encloseChar="" fieldName="f4" randomiser-instance="SimpleBooleanNoNulls" width="-1"/>
-    <data-item alignment="1" encloseChar="" fieldName="f5" randomiser-instance="RegularExpressionUKPostCodes" width="-1"/>
-    <data-item alignment="1" encloseChar="" fieldName="f6" randomiser-instance="RegularExpressionUKCarPlates" width="-1"/>
-    <data-item alignment="1" encloseChar="" fieldName="f7" randomiser-instance="ListItems_Test" width="-1"/>
-    <data-item alignment="1" encloseChar="" fieldName="f8" randomiser-instance="CLOSE_TYPE" width="-1"/>
+    <data-item alignment="1" dummy="true" encloseChar="" fieldName="f1" randomiser-instance="SimpleSequencer" width="-1"/>
+    <data-item alignment="1" dummy="true" encloseChar="" fieldName="f2" randomiser-instance="EnglishFirstnames" width="-1"/>
+    <data-item alignment="1" dummy="" encloseChar="" fieldName="f3" randomiser-instance="EnglishLastnames" width="-1"/>
+    <data-item alignment="1" dummy="" encloseChar="" fieldName="f4" randomiser-instance="SimpleBooleanNoNulls" width="-1"/>
+    <data-item alignment="1" dummy="" encloseChar="" fieldName="f5" randomiser-instance="RegularExpressionUKPostCodes" width="-1"/>
+    <data-item alignment="1" dummy="" encloseChar="" fieldName="f6" randomiser-instance="RegularExpressionUKCarPlates" width="-1"/>
+    <data-item alignment="1" dummy="" encloseChar="" fieldName="f7" randomiser-instance="ListItems_Test" width="-1"/>
+    <data-item alignment="1" dummy="" encloseChar="" fieldName="f8" randomiser-instance="CLOSE_TYPE" width="-1"/>
+    <data-item alignment="1" dummy="" encloseChar="" expression="$f4 ? $f1 : $f2" fieldName="f9" randomiser-instance="_expression" width="-1"/>
   </File-output-definition>
   <File-output-definition delimiter="\t" loggerName="test_2" name="TestFile222" totalRecords="0" tps="0">
     <description>secondary     </description>
@@ -29,11 +30,11 @@
   log4j.appender.MyApp2.layout.ConversionPattern=%d{dd HH:mm:ss} %p %t %c{2}.%M(): %m%n
   log4j.logger.test_2=DEBUG, MyApp2
     </log4j>
-    <data-item alignment="1" encloseChar="" fieldName="d1" randomiser-instance="SimpleSequencer" width="-1"/>
-    <data-item alignment="1" encloseChar="" fieldName="d2" randomiser-instance="EnglishFirstnames" width="-1"/>
-    <data-item alignment="1" encloseChar="" fieldName="d3" randomiser-instance="EnglishLastnames" width="-1"/>
-    <data-item alignment="1" encloseChar="" fieldName="d4" randomiser-instance="SimpleBooleanNoNulls" width="-1"/>
-    <data-item alignment="1" encloseChar="" fieldName="time" randomiser-instance="systemtime" width="-1"/>
+    <data-item alignment="1" dummy="" encloseChar="" fieldName="d1" randomiser-instance="SimpleSequencer" width="-1"/>
+    <data-item alignment="1" dummy="" encloseChar="" fieldName="d2" randomiser-instance="EnglishFirstnames" width="-1"/>
+    <data-item alignment="1" dummy="" encloseChar="" fieldName="d3" randomiser-instance="EnglishLastnames" width="-1"/>
+    <data-item alignment="1" dummy="" encloseChar="" fieldName="d4" randomiser-instance="SimpleBooleanNoNulls" width="-1"/>
+    <data-item alignment="1" dummy="" encloseChar="" fieldName="time" randomiser-instance="systemtime" width="-1"/>
   </File-output-definition>
   <File-output-definition delimiter="," loggerName="log_db" name="dbtest" totalRecords="0" tps="0">
     <description>db query test</description>
@@ -42,9 +43,24 @@ log4j.appender.CON.target=System.out
 log4j.appender.CON.layout=org.apache.log4j.PatternLayout
 log4j.appender.CON.layout.ConversionPattern=%d{dd HH:mm:ss} %p %t %c{2}.%M(): %m%n
 log4j.logger.log_db=INFO,CON</log4j>
-    <data-item alignment="1" encloseChar="" fieldName="DB1" randomiser-instance="local" width="-1"/>
-    <data-item alignment="1" encloseChar="" fieldName="DB1" randomiser-instance="SimpleTime" width="-1"/>
-    <data-item alignment="1" encloseChar="" fieldName="DB2" randomiser-instance="EnglishText2" width="-1"/>
-    <data-item alignment="1" encloseChar="" fieldName="F4" randomiser-instance="SimpleTime" width="-1"/>
+    <data-item alignment="1" dummy="" encloseChar="" fieldName="DB1" randomiser-instance="local" width="-1"/>
+    <data-item alignment="1" dummy="" encloseChar="" fieldName="DB1" randomiser-instance="SimpleTime" width="-1"/>
+    <data-item alignment="1" dummy="" encloseChar="" fieldName="DB2" randomiser-instance="EnglishText2" width="-1"/>
+    <data-item alignment="1" dummy="" encloseChar="" fieldName="F4" randomiser-instance="SimpleTime" width="-1"/>
+  </File-output-definition>
+  <File-output-definition delimiter="," loggerName="call_test_logger" name="call_test" totalRecords="0" tps="1">
+    <description>fdsafd</description>
+    <log4j>  log4j.appender.MyApp3=org.apache.log4j.RollingFileAppender
+  log4j.appender.MyApp3.File=/Users/babokim/tmp/datagen_test3.log
+  log4j.appender.MyApp3.MaxFileSize=512KB
+  log4j.appender.MyApp3.MaxBackupIndex=3
+  log4j.appender.MyApp3.layout=org.apache.log4j.PatternLayout
+  log4j.appender.MyApp3.layout.ConversionPattern=%d{dd HH:mm:ss} %p %t %c{2}.%M(): %m%n
+  log4j.logger.call_test_logger=DEBUG, MyApp3</log4j>
+    <data-item alignment="1" dummy="false" encloseChar="" fieldName="user_name" randomiser-instance="EnglishFirstnames" width="-1"/>
+    <data-item alignment="1" dummy="false" encloseChar="" fieldName="start_date" randomiser-instance="systemtime" width="-1"/>
+    <data-item alignment="1" dummy="true" encloseChar="" fieldName="time_gap" randomiser-instance="time_gap" width="-1"/>
+    <data-item alignment="1" dummy="false" encloseChar="" expression="$start_date + $time_gap" fieldName="end_date" randomiser-instance="_expression" width="-1"/>
+    <data-item alignment="1" dummy="false" encloseChar="" fieldName="close_type" randomiser-instance="CLOSE_TYPE" width="-1"/>
   </File-output-definition>
 </datafile-definitions>

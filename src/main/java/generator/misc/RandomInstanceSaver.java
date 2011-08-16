@@ -61,8 +61,9 @@ public class RandomInstanceSaver
             properties = ri.getProperties();
             
             Set<String> keys;
-            if(properties==null)
+            if(properties==null) {
                 logger.fatal("Properties are null, has this object been linked in RandomiserInstance?");
+            }
             keys = properties.keySet();
             
             for(String key : keys)

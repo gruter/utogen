@@ -16,7 +16,9 @@ public class DataFileItem {
   private int alignment;
   private String encloseChar;
   private int width;
-
+  private String expression;
+  private String dummy;
+  
   /** Creates a new instance of DataFileItem */
   public DataFileItem() {
   }
@@ -59,6 +61,22 @@ public class DataFileItem {
 
   public void setFieldName(String fieldName) {
     this.fieldName = fieldName;
+  }
+
+  public String getExpression() {
+    return expression;
+  }
+
+  public void setExpression(String expression) {
+    this.expression = expression;
+  }
+
+  public String getDummy() {
+    return dummy;
+  }
+
+  public void setDummy(String dummy) {
+    this.dummy = dummy;
   }
 
 }

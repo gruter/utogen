@@ -93,6 +93,12 @@ public class DataFileDefinition
       result += "randomiser-instance=\"" + dataItem.getRandomiserInstanceName()  + "\" ";
       result += "width=\"" + dataItem.getWidth()  + "\" ";
       result += "encloseChar=\"" + dataItem.getEncloseChar()  + "\" ";
+      if(dataItem.getDummy() != null && dataItem.getDummy().length() > 0) {
+        result += "dummy=\"" + dataItem.getDummy()  + "\" ";
+      }
+      if(dataItem.getExpression() != null && dataItem.getExpression().length() > 0) {
+        result += "expression=\"" + dataItem.getExpression()  + "\" ";
+      }
       result += "alignment=\"" + dataItem.getAlignment()  + "\" />";
       return result;
     }

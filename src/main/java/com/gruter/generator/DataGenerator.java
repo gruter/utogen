@@ -9,7 +9,7 @@ import com.gruter.generator.service.GeneratorService;
 
 public class DataGenerator {
   public static void main(String[] args) throws Exception {
-//    args = new String[] { "/Users/babokim/workspace/dgmaster_maven/conf/TextFileDefinitions.xml", "TestFile" };
+//    args = new String[] { "/Users/babokim/workspace/dgmaster_maven/conf/TextFileDefinitions.xml", "call_test" };
     if (args.length < 2) {
       System.out.println("Usage: java DataGenerator <file definition xml> <file definition name>");
       System.exit(0);

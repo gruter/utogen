@@ -40,7 +40,17 @@ public class GeneratorJobThread extends Thread {
   }
   
   public void generateLog() {
-    Generator generator = new Generator(dfd);
+    Generator generator;
+    try {
+      generator = new Generator(dfd);
+    } catch (Exception e1) {
+      job.setJobStatus("Error:" + e1.getMessage());
+      if(observer != null) {
+        observer.datageGenError(e1.getMessage());
+      }
+      e1.printStackTrace();
+      return;
+    }
 
     if(observer != null) {
       observer.dataGenStarted();

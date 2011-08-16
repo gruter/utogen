@@ -298,8 +298,13 @@ public class PanelDateRandomiser extends RandomiserPanel {
       return false;
     }
 
-    if (txtDateFormat.getText().trim().length() == 0)
-      txtDateFormat.setText("yyyy-mm-dd");
+    if (txtDateFormat.getText().trim().length() == 0) {
+      if(!chkSystemTime.isSelected()) {
+        txtDateFormat.setText("yyyy-mm-dd");
+      } else {
+        txtDateFormat.setText("");
+      }
+    }
     try {
       dateFormat = new SimpleDateFormat(txtDateFormat.getText());
     } catch (Exception e) {
@@ -457,6 +462,8 @@ public class PanelDateRandomiser extends RandomiserPanel {
     } else {
       chkSystemTime.setSelected(false);
     }
+    
+    txtDateFormat.setText((String)hashmap.get("dateFormat"));
   }
 
   private DefaultTableModel newModel = new DefaultTableModel();

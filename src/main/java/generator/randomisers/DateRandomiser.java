@@ -57,10 +57,12 @@ public class DateRandomiser implements IRandomiserFunctionality
         sNulls = (String) hashMap.get("nullField");
         sSelectedDays  = (String) hashMap.get("selectedDays");
         sSDF = (String) hashMap.get("dateFormat");
-
-        sdf = new SimpleDateFormat(sSDF);
-        
         systemTime = "true".equals((String)hashMap.get("systemTime"));
+
+        if(sSDF != null && sSDF.trim().length() > 0) {
+          sdf = new SimpleDateFormat(sSDF);
+        }
+        
         if(systemTime) {
           return;
         }
@@ -177,7 +179,11 @@ public class DateRandomiser implements IRandomiserFunctionality
     public Object generate()
     {
       if(systemTime) {
-        return sdf.format(System.currentTimeMillis());
+        if(sdf != null) {
+          return sdf.format(System.currentTimeMillis());
+        } else {
+          return "" + System.currentTimeMillis();
+        }
       }
         //check the nulls first
         int prob;

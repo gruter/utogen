@@ -18,12 +18,13 @@ import generator.misc.RandomiserType;
 import generator.misc.Utils;
 
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Vector;
 
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import org.apache.log4j.Logger;
@@ -40,6 +41,8 @@ public class FileOutputPanel extends javax.swing.JPanel implements ProgressUpdat
   private MainForm frmMain;
   private ProgressForm frmProgress;
 
+  private Map<String, String> expressions = new HashMap<String, String>();
+  
   /** Creates new form FileOutputPanel */
   public FileOutputPanel() {
     initComponents();
@@ -127,8 +130,6 @@ public class FileOutputPanel extends javax.swing.JPanel implements ProgressUpdat
     jPanel1 = new javax.swing.JPanel();
     jPanel2 = new javax.swing.JPanel();
     jPanel3 = new javax.swing.JPanel();
-    lstRandomiserTypes = new javax.swing.JList();
-    lstRandomiserInstances = new javax.swing.JList();
     jLabel9 = new javax.swing.JLabel();
     radCenter = new javax.swing.JRadioButton();
     radLeft = new javax.swing.JRadioButton();
@@ -144,6 +145,14 @@ public class FileOutputPanel extends javax.swing.JPanel implements ProgressUpdat
     txtChar = new javax.swing.JTextField();
     jLabel4 = new javax.swing.JLabel();
     txtFieldName = new javax.swing.JTextField();
+    jLabel16 = new javax.swing.JLabel();
+    jScrollPane3 = new javax.swing.JScrollPane();
+    txtExpression = new javax.swing.JTextArea();
+    jScrollPane5 = new javax.swing.JScrollPane();
+    lstRandomiserInstances = new javax.swing.JList();
+    jScrollPane6 = new javax.swing.JScrollPane();
+    lstRandomiserTypes = new javax.swing.JList();
+    chkDummy = new javax.swing.JCheckBox();
     jPanel4 = new javax.swing.JPanel();
     jLabel3 = new javax.swing.JLabel();
     btnRemove = new javax.swing.JButton();
@@ -173,25 +182,6 @@ public class FileOutputPanel extends javax.swing.JPanel implements ProgressUpdat
     txtLoggerName = new javax.swing.JTextField();
 
     jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Generated data", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.ABOVE_TOP));
-
-    lstRandomiserTypes.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-    lstRandomiserTypes.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-        public void propertyChange(java.beans.PropertyChangeEvent evt) {
-            lstRandomiserTypesPropertyChange(evt);
-        }
-    });
-    lstRandomiserTypes.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-        public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-            lstRandomiserTypesValueChanged(evt);
-        }
-    });
-
-    lstRandomiserInstances.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-    lstRandomiserInstances.setModel(new javax.swing.AbstractListModel() {
-        String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-        public int getSize() { return strings.length; }
-        public Object getElementAt(int i) { return strings[i]; }
-    });
 
     jLabel9.setText("Optional formatting");
 
@@ -239,6 +229,35 @@ public class FileOutputPanel extends javax.swing.JPanel implements ProgressUpdat
 
     jLabel4.setText("Filed Name:");
 
+    jLabel16.setText("Expression:");
+
+    txtExpression.setColumns(20);
+    txtExpression.setRows(5);
+    jScrollPane3.setViewportView(txtExpression);
+
+    lstRandomiserInstances.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+    lstRandomiserInstances.setModel(new javax.swing.AbstractListModel() {
+        String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+        public int getSize() { return strings.length; }
+        public Object getElementAt(int i) { return strings[i]; }
+    });
+    jScrollPane5.setViewportView(lstRandomiserInstances);
+
+    lstRandomiserTypes.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+    lstRandomiserTypes.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+        public void propertyChange(java.beans.PropertyChangeEvent evt) {
+            lstRandomiserTypesPropertyChange(evt);
+        }
+    });
+    lstRandomiserTypes.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+        public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+            lstRandomiserTypesValueChanged(evt);
+        }
+    });
+    jScrollPane6.setViewportView(lstRandomiserTypes);
+
+    chkDummy.setText("dummy");
+
     org.jdesktop.layout.GroupLayout jPanel3Layout = new org.jdesktop.layout.GroupLayout(jPanel3);
     jPanel3.setLayout(jPanel3Layout);
     jPanel3Layout.setHorizontalGroup(
@@ -247,37 +266,47 @@ public class FileOutputPanel extends javax.swing.JPanel implements ProgressUpdat
             .addContainerGap()
             .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                 .add(jLabel1)
-                .add(lstRandomiserTypes, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 170, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(jScrollPane6, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 168, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
             .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-            .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                .add(org.jdesktop.layout.GroupLayout.LEADING, btnViewRI, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
-                .add(org.jdesktop.layout.GroupLayout.LEADING, jLabel2)
-                .add(org.jdesktop.layout.GroupLayout.LEADING, lstRandomiserInstances, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE))
             .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(jScrollPane5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                .add(btnViewRI, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                .add(jLabel2))
+            .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jPanel3Layout.createSequentialGroup()
+                        .add(15, 15, 15)
+                        .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                            .add(jPanel3Layout.createSequentialGroup()
+                                .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                                    .add(jLabel4)
+                                    .add(jLabel6)
+                                    .add(jLabel11)
+                                    .add(jLabel7))
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                                    .add(txtChar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 53, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(jPanel3Layout.createSequentialGroup()
+                                        .add(txtWidth, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 53, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(chkDummy))
+                                    .add(radLeft)
+                                    .add(radRight)
+                                    .add(txtFieldName, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
+                                    .add(radCenter, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .add(jPanel3Layout.createSequentialGroup()
+                                .add(jLabel9)
+                                .add(34, 34, 34)))
+                        .add(10, 10, 10))
+                    .add(jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(btnAdd, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
+                        .addContainerGap()))
                 .add(jPanel3Layout.createSequentialGroup()
-                    .add(15, 15, 15)
-                    .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                        .add(jPanel3Layout.createSequentialGroup()
-                            .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                                .add(jLabel4)
-                                .add(jLabel6)
-                                .add(jLabel11)
-                                .add(jLabel7))
-                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                            .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                                .add(txtChar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 53, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .add(txtWidth, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 53, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .add(radLeft)
-                                .add(radRight)
-                                .add(txtFieldName, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
-                                .add(radCenter, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .add(jPanel3Layout.createSequentialGroup()
-                            .add(jLabel9)
-                            .add(34, 34, 34)))
-                    .add(10, 10, 10))
-                .add(jPanel3Layout.createSequentialGroup()
-                    .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                    .add(btnAdd, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                    .add(18, 18, 18)
+                    .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                        .add(jScrollPane3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 244, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(jLabel16))
                     .addContainerGap())))
     );
     jPanel3Layout.setVerticalGroup(
@@ -289,18 +318,12 @@ public class FileOutputPanel extends javax.swing.JPanel implements ProgressUpdat
                 .add(org.jdesktop.layout.GroupLayout.TRAILING, jLabel9, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 14, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
             .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                 .add(jPanel3Layout.createSequentialGroup()
-                    .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                    .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                        .add(lstRandomiserInstances, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
-                        .add(lstRandomiserTypes, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE))
-                    .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                    .add(btnViewRI)
-                    .addContainerGap())
-                .add(jPanel3Layout.createSequentialGroup()
                     .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                         .add(jPanel3Layout.createSequentialGroup()
                             .add(7, 7, 7)
-                            .add(txtWidth, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                                .add(txtWidth, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(chkDummy)))
                         .add(jPanel3Layout.createSequentialGroup()
                             .add(9, 9, 9)
                             .add(jLabel6)))
@@ -322,7 +345,18 @@ public class FileOutputPanel extends javax.swing.JPanel implements ProgressUpdat
                         .add(jLabel4))
                     .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                     .add(btnAdd)
-                    .add(91, 91, 91))))
+                    .add(1, 1, 1)
+                    .add(jLabel16)
+                    .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                    .add(jScrollPane3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel3Layout.createSequentialGroup()
+                    .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                    .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                        .add(org.jdesktop.layout.GroupLayout.LEADING, jScrollPane6, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+                        .add(jScrollPane5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE))
+                    .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                    .add(btnViewRI)))
+            .addContainerGap())
     );
 
     jLabel3.setText("Selected data for output");
@@ -393,7 +427,7 @@ public class FileOutputPanel extends javax.swing.JPanel implements ProgressUpdat
                     .add(btnDown, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 24, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(jPanel4Layout.createSequentialGroup()
                     .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                    .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)))
+                    .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)))
             .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
             .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                 .add(btnRemoveFormat)
@@ -408,14 +442,13 @@ public class FileOutputPanel extends javax.swing.JPanel implements ProgressUpdat
         .add(jPanel2Layout.createSequentialGroup()
             .add(jPanel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-            .add(jPanel4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(21, Short.MAX_VALUE))
+            .add(jPanel4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
     );
     jPanel2Layout.setVerticalGroup(
         jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
         .add(jPanel2Layout.createSequentialGroup()
             .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                .add(jPanel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(jPanel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 354, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(jPanel4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addContainerGap())
     );
@@ -431,7 +464,7 @@ public class FileOutputPanel extends javax.swing.JPanel implements ProgressUpdat
     jPanel6Layout.setHorizontalGroup(
         jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
         .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel6Layout.createSequentialGroup()
-            .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addContainerGap(97, Short.MAX_VALUE)
             .add(jLabel10)
             .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
             .add(txtDefinition, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 165, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -487,7 +520,7 @@ public class FileOutputPanel extends javax.swing.JPanel implements ProgressUpdat
                 .add(jLabel14)
                 .add(jLabel5))
             .add(18, 18, 18)
-            .add(jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+            .add(jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                 .add(jPanel5Layout.createSequentialGroup()
                     .add(txtTotalRecords, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 119, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
@@ -501,13 +534,13 @@ public class FileOutputPanel extends javax.swing.JPanel implements ProgressUpdat
                     .add(18, 18, 18)
                     .add(jLabel15)
                     .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                    .add(txtLoggerName))
+                    .add(txtLoggerName, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))
                 .add(jScrollPane4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 902, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-            .addContainerGap(34, Short.MAX_VALUE))
+            .addContainerGap())
     );
     jPanel5Layout.setVerticalGroup(
         jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-        .add(jPanel5Layout.createSequentialGroup()
+        .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel5Layout.createSequentialGroup()
             .add(jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                 .add(jLabel5)
                 .add(txtTotalRecords, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -520,7 +553,7 @@ public class FileOutputPanel extends javax.swing.JPanel implements ProgressUpdat
             .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
             .add(jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                 .add(jLabel14)
-                .add(jScrollPane4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE))
+                .add(jScrollPane4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE))
             .addContainerGap())
     );
 
@@ -530,15 +563,15 @@ public class FileOutputPanel extends javax.swing.JPanel implements ProgressUpdat
         jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
         .add(jPanel1Layout.createSequentialGroup()
             .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                .add(jPanel6, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(jPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .add(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
                     .add(btnGenerate)
                     .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                     .add(btnSave, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 111, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(jPanel6, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .add(jPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .add(jPanel5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addContainerGap(58, Short.MAX_VALUE))
+            .addContainerGap(674, Short.MAX_VALUE))
     );
     jPanel1Layout.setVerticalGroup(
         jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -567,6 +600,7 @@ public class FileOutputPanel extends javax.swing.JPanel implements ProgressUpdat
         layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
         .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 832, Short.MAX_VALUE)
     );
+    
   }// </editor-fold>
 
   private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {
@@ -622,46 +656,65 @@ public class FileOutputPanel extends javax.swing.JPanel implements ProgressUpdat
     
     for (int i = 0; i < modelOutData.size(); i++) {
       String item = (String) modelOutData.elementAt(i);
-      String filedName = item.substring(0, item.indexOf(":"));
+      String fieldName = item.substring(0, item.indexOf(":"));
       item = item.substring(item.indexOf(":") + 1);
       
       int idx = item.indexOf(Constants.LEFT_MARK);
       String riName = item.substring(0, idx);
       String options = item.substring(idx + 1, item.length() - 1); // xx,yy,zz
 
-      // do the parsing of the options substring
-      String[] tokens = options.split(",");
-      if (tokens[0].equalsIgnoreCase("default"))
-        width = Constants.DEFAULT_WIDTH;
-      else {
-        try {
-          width = Integer.parseInt(tokens[0]);
-        } catch (Exception e) {
-          logger.error("Problem converting string to integer: " + tokens[0]);
-          width = -1;
+      if(expressions.containsKey(fieldName)) {
+        DataFileItem dataFileItem = new DataFileItem();
+        dataFileItem.setFieldName(fieldName);
+        dataFileItem.setRandomiserInstanceName(riName);
+        dataFileItem.setWidth(Constants.DEFAULT_WIDTH);
+        dataFileItem.setEncloseChar("");
+        dataFileItem.setAlignment(Constants.ALIGN_LEFT);
+        dataFileItem.setExpression(expressions.get(fieldName));
+        dataFileItem.setDummy("false");
+        vDataFileItems.add(dataFileItem);
+      } else {
+        // do the parsing of the options substring
+        String[] tokens = options.split(",");
+        if (tokens[0].equalsIgnoreCase("default"))
+          width = Constants.DEFAULT_WIDTH;
+        else {
+          try {
+            width = Integer.parseInt(tokens[0]);
+          } catch (Exception e) {
+            logger.error("Problem converting string to integer: " + tokens[0]);
+            width = -1;
+          }
         }
+  
+        if (tokens[1] == null || tokens[1].length() == 0 || tokens[1].equalsIgnoreCase("none"))
+          encloseChar = "";
+        else
+          encloseChar = tokens[1].substring(0, 1);
+  
+        if (tokens[2].equalsIgnoreCase("left")) {
+          align = Constants.ALIGN_LEFT;
+        } else if (tokens[2].equalsIgnoreCase("center")) {
+          align = Constants.ALIGN_CENTER;
+        } else {
+          align = Constants.ALIGN_RIGHT;
+        }
+        
+        String dummy = "false";
+        if(tokens.length > 3 && tokens[3].equalsIgnoreCase("dummy")) {
+          dummy = "true";
+        }
+  
+        DataFileItem dataFileItem = new DataFileItem();
+        dataFileItem.setFieldName(fieldName);
+        dataFileItem.setRandomiserInstanceName(riName);
+        dataFileItem.setWidth(width);
+        dataFileItem.setEncloseChar(encloseChar);
+        dataFileItem.setAlignment(align);
+        dataFileItem.setDummy(dummy);
+        
+        vDataFileItems.add(dataFileItem);
       }
-
-      if (tokens[1] == null || tokens[1].length() == 0 || tokens[1].equalsIgnoreCase("none"))
-        encloseChar = "";
-      else
-        encloseChar = tokens[1].substring(0, 1);
-
-      if (tokens[2].equalsIgnoreCase("left"))
-        align = Constants.ALIGN_LEFT;
-      else if (tokens[2].equalsIgnoreCase("center"))
-        align = Constants.ALIGN_CENTER;
-      else
-        align = Constants.ALIGN_RIGHT;
-
-      DataFileItem dataFileItem = new DataFileItem();
-      dataFileItem.setFieldName(filedName);
-      dataFileItem.setRandomiserInstanceName(riName);
-      dataFileItem.setWidth(width);
-      dataFileItem.setEncloseChar(encloseChar);
-      dataFileItem.setAlignment(align);
-
-      vDataFileItems.add(dataFileItem);
     }
     dataFile.setOutDataItems(vDataFileItems);
 
@@ -736,21 +789,31 @@ public class FileOutputPanel extends javax.swing.JPanel implements ProgressUpdat
   }
 
   private void btnRemoveFormatActionPerformed(java.awt.event.ActionEvent evt) {
-    int row = lstOutData.getSelectedIndex();
-    if (row == -1)
-      return;
-
-    String selItem = (String) modelOutData.get(row);
-    int idxLeft = selItem.indexOf(Constants.LEFT_MARK);
-    String genInstance = selItem.substring(0, idxLeft);
-    genInstance = genInstance + "(Default,None,Left)";
-    modelOutData.set(row, genInstance);
+//    int row = lstOutData.getSelectedIndex();
+//    if (row == -1)
+//      return;
+//
+//    String selItem = (String) modelOutData.get(row);
+//    int idxLeft = selItem.indexOf(Constants.LEFT_MARK);
+//    String genInstance = selItem.substring(0, idxLeft);
+//    genInstance = genInstance + "(Default,None,Left)";
+//    modelOutData.set(row, genInstance);
+    JOptionPane.showMessageDialog(this, "This function disabled", "Error",
+        JOptionPane.ERROR_MESSAGE);
   }
 
   private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {
     int row = lstOutData.getSelectedIndex();
     if (row == -1)
       return;
+    String item = (String)modelOutData.elementAt(row);
+    
+    String[] itemInfos = getFieldRiName(item);
+    if("_expression".equals(itemInfos[1]) && expressions.remove(itemInfos[0]) == null) {
+      JOptionPane.showMessageDialog(this, "Can't remove expression.", "Error",
+          JOptionPane.ERROR_MESSAGE);
+      return;
+    }
     modelOutData.remove(row);
     if (row < modelOutData.size())
       lstOutData.setSelectedIndex(row);
@@ -758,6 +821,15 @@ public class FileOutputPanel extends javax.swing.JPanel implements ProgressUpdat
       lstOutData.setSelectedIndex(modelOutData.size() - 1);
   }
 
+  private String[] getFieldRiName(String item) {
+    String fieldName = item.substring(0, item.indexOf(":"));
+    item = item.substring(item.indexOf(":") + 1);
+    
+    int idx = item.indexOf(Constants.LEFT_MARK);
+    String riName = item.substring(0, idx);
+    return new String[]{fieldName, riName};
+  }
+  
   private void btnViewRIActionPerformed(java.awt.event.ActionEvent evt) {
     RandomiserType rt = null;
     RandomiserInstance ri = null;
@@ -840,6 +912,16 @@ public class FileOutputPanel extends javax.swing.JPanel implements ProgressUpdat
       return;
     }
 
+    String expr = null;
+    RandomiserInstance ri = vRandomiserInstances.get(idx);
+    if("ExpressionRandomiser".equals(ri.getRandomiserType())) {
+      expr = txtExpression.getText().trim();
+      if(expr.length() == 0) {
+        JOptionPane.showMessageDialog(this, "Needed expresion", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+      }
+      expressions.put(fieldName, expr);
+    }
     String name = (String) modelRI.getElementAt(idx);
     String align;
     if (radLeft.isSelected())
@@ -858,8 +940,19 @@ public class FileOutputPanel extends javax.swing.JPanel implements ProgressUpdat
     else
       enclosingChar = "," + enclosingChar.substring(0, 1);
 
-    String toAdd = fieldName + ":" + name + Constants.LEFT_MARK + sWidth + enclosingChar + align + Constants.RIGHT_MARK;
-    modelOutData.addElement(toAdd);
+    String dummy = ",None";
+    if(chkDummy.isSelected()) {
+      dummy = ",Dummy";
+    }
+    if(expr != null) {
+      String toAdd = fieldName + ":" + name + Constants.LEFT_MARK + expr + Constants.RIGHT_MARK;
+      modelOutData.addElement(toAdd);
+    } else {
+      String toAdd = fieldName + ":" + name + Constants.LEFT_MARK + sWidth + enclosingChar + align + dummy + Constants.RIGHT_MARK;
+      modelOutData.addElement(toAdd);
+    }
+    txtFieldName.setText("");
+    txtExpression.setText("");
   }
 
   private void txtWidthActionPerformed(java.awt.event.ActionEvent evt) {
@@ -1118,6 +1211,7 @@ public class FileOutputPanel extends javax.swing.JPanel implements ProgressUpdat
   private javax.swing.ButtonGroup buttonGroup1;
   private javax.swing.ButtonGroup buttonGroup2;
   private javax.swing.ButtonGroup buttonGroup3;
+  private javax.swing.JCheckBox chkDummy;
   private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel jLabel10;
   private javax.swing.JLabel jLabel11;
@@ -1125,6 +1219,7 @@ public class FileOutputPanel extends javax.swing.JPanel implements ProgressUpdat
   private javax.swing.JLabel jLabel13;
   private javax.swing.JLabel jLabel14;
   private javax.swing.JLabel jLabel15;
+  private javax.swing.JLabel jLabel16;
   private javax.swing.JLabel jLabel2;
   private javax.swing.JLabel jLabel3;
   private javax.swing.JLabel jLabel4;
@@ -1141,8 +1236,10 @@ public class FileOutputPanel extends javax.swing.JPanel implements ProgressUpdat
   private javax.swing.JPanel jPanel6;
   private javax.swing.JScrollPane jScrollPane1;
   private javax.swing.JScrollPane jScrollPane2;
+  private javax.swing.JScrollPane jScrollPane3;
   private javax.swing.JScrollPane jScrollPane4;
-  private javax.swing.JTextArea txtLog4j;
+  private javax.swing.JScrollPane jScrollPane5;
+  private javax.swing.JScrollPane jScrollPane6;
   private javax.swing.JList lstOutData;
   private javax.swing.JList lstRandomiserInstances;
   private javax.swing.JList lstRandomiserTypes;
@@ -1153,11 +1250,14 @@ public class FileOutputPanel extends javax.swing.JPanel implements ProgressUpdat
   private javax.swing.JTextField txtDefinition;
   private javax.swing.JTextField txtDelimiter;
   private javax.swing.JTextField txtDescription;
+  private javax.swing.JTextArea txtExpression;
   private javax.swing.JTextField txtFieldName;
+  private javax.swing.JTextArea txtLog4j;
   private javax.swing.JTextField txtLoggerName;
   private javax.swing.JTextField txtTotalRecords;
   private javax.swing.JTextField txtTps;
   private javax.swing.JTextField txtWidth;
+
   // End of variables declaration
 
 }

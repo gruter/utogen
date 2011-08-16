@@ -112,6 +112,16 @@ public class DataFileOutputSAXHandler extends SAXDataHandler
             attribValue = attributes.getValue("randomiser-instance");
             dataItem.setRandomiserInstanceName(attribValue);
             
+            attribValue = attributes.getValue("expression");
+            if(attribValue != null && attribValue.length() > 0) {
+              dataItem.setExpression(attribValue);
+            }
+            
+            attribValue = attributes.getValue("dummy");
+            if(attribValue != null && attribValue.length() > 0) {
+              dataItem.setDummy(attribValue);
+            }
+            
             try {
                 attribValue = attributes.getValue("width");
                 dataItem.setWidth(Integer.parseInt(attribValue));

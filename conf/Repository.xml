@@ -191,7 +191,18 @@ Simply set the keys-values that the EnglishTextRandomiser needs - of course you 
     <property name="rangesNum" value="0"/>
     <property name="nullField" value="0"/>
     <property name="selectedDays" value="0000000"/>
-    <property name="dateFormat" value="yyyy-MM-dd"/>
+    <property name="dateFormat" value=""/>
     <property name="systemTime" value="true"/>
+  </randomiser-instance>
+  <randomiser-instance name="_expression" randomiser-type="ExpressionRandomiser">
+    <description/>
+  </randomiser-instance>
+  <randomiser-instance name="time_gap" randomiser-type="NumIntegerRandomiser">
+    <description>fdsafdsa</description>
+    <property name="rangesNum" value="1"/>
+    <property name="fromField0" value="100"/>
+    <property name="toField0" value="10000"/>
+    <property name="percentField0" value="100"/>
+    <property name="nullField" value="0"/>
   </randomiser-instance>
 </randomiser-instances>
