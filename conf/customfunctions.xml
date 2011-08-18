@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- custom function source code must contain the fully qualified class name
+     of any referenced classes, which must all be on the classpath -->
+<functions>
+    <function>
+	public boolean isnull( Object value ) {
+		return value == null;
+	}
+    </function>
+    <function>
+	public boolean istrue( Boolean value ) {
+		return value == Boolean.TRUE;
+	}
+    </function>
+    <function>
+        public Object iif( Boolean condition, Object whenTrue, Object whenFalse ) {
+            return condition == Boolean.TRUE ? whenTrue : whenFalse;
+        }
+    </function>
+    <function>
+        public Long iif( Boolean condition, Long whenTrue, Long whenFalse ) {
+            return condition == Boolean.TRUE ? whenTrue : whenFalse;
+        }
+    </function>
+    <function>
+    	public Object dateFormat(Long time, String format) {
+    		if(!com.gruter.generator.function.ExpressionOasisFunction.dateFormatMap.containsKey(format)) {
+    			com.gruter.generator.function.ExpressionOasisFunction.dateFormatMap.put(format, new java.text.SimpleDateFormat(format));
+    		} 
+    		java.text.SimpleDateFormat df = (java.text.SimpleDateFormat)com.gruter.generator.function.ExpressionOasisFunction.dateFormatMap.get(format);
+    		
+    		return df.format(time);
+    	}
+    </function>
+</functions>

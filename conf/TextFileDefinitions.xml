@@ -63,4 +63,19 @@ log4j.logger.log_db=INFO,CON</log4j>
     <data-item alignment="1" dummy="false" encloseChar="" expression="$start_date + $time_gap" fieldName="end_date" randomiser-instance="_expression" width="-1"/>
     <data-item alignment="1" dummy="false" encloseChar="" fieldName="close_type" randomiser-instance="CLOSE_TYPE" width="-1"/>
   </File-output-definition>
+  <File-output-definition delimiter="," loggerName="call_test2_logger" name="call_test2" totalRecords="0" tps="1">
+    <description>fdsaf</description>
+    <log4j>log4j.appender.MyApp3=org.apache.log4j.RollingFileAppender
+  log4j.appender.MyApp3.File=/Users/babokim/tmp/datagen_test3.log
+  log4j.appender.MyApp3.MaxFileSize=512KB
+  log4j.appender.MyApp3.MaxBackupIndex=3
+  log4j.appender.MyApp3.layout=org.apache.log4j.PatternLayout
+  log4j.appender.MyApp3.layout.ConversionPattern=%d{dd HH:mm:ss} %p %t %c{2}.%M(): %m%n
+  log4j.logger.call_test2_logger=DEBUG, MyApp3</log4j>
+    <data-item alignment="1" dummy="false" encloseChar="" fieldName="name" randomiser-instance="EnglishFirstnames" width="-1"/>
+    <data-item alignment="1" dummy="false" encloseChar="" fieldName="start_time" randomiser-instance="system_time_format" width="-1"/>
+    <data-item alignment="1" dummy="true" encloseChar="" fieldName="start_time_dummy" randomiser-instance="systemtime" width="-1"/>
+    <data-item alignment="1" dummy="true" encloseChar="" fieldName="time_gap" randomiser-instance="time_gap" width="-1"/>
+    <data-item alignment="1" dummy="false" encloseChar="" expression="dateFormat( $start_time_dummy + $time_gap , 'yyyy-MM-dd HH:mm:ss')" fieldName="end_time" randomiser-instance="_expression" width="-1"/>
+  </File-output-definition>
 </datafile-definitions>

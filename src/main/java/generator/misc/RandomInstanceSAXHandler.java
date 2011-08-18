@@ -109,9 +109,15 @@ public class RandomInstanceSAXHandler extends SAXDataHandler
 
     @Override
     public void endDocument() throws SAXException {
+      for(RandomiserInstance instance: vRandomInstances) {
+        if("_expression".equalsIgnoreCase(instance.getName())) {
+          return;
+        }
+      }
       RandomiserInstance expressionRi = new RandomiserInstance();
       expressionRi.setName("_expression");
       expressionRi.setRandomiserType("ExpressionRandomiser");
+
       vRandomInstances.add(expressionRi);
 
       super.endDocument();
