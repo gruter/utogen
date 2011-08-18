@@ -205,4 +205,12 @@ Simply set the keys-values that the EnglishTextRandomiser needs - of course you 
     <property name="percentField0" value="100"/>
     <property name="nullField" value="0"/>
   </randomiser-instance>
+  <randomiser-instance name="system_time_format" randomiser-type="DateRandomiser">
+    <description/>
+    <property name="rangesNum" value="0"/>
+    <property name="nullField" value="0"/>
+    <property name="selectedDays" value="0000000"/>
+    <property name="dateFormat" value="yyyy-MM-dd HH:mm:ss"/>
+    <property name="systemTime" value="true"/>
+  </randomiser-instance>
 </randomiser-instances>
