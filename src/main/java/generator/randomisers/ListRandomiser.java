@@ -90,7 +90,7 @@ public class ListRandomiser implements IRandomiserFunctionality
             }
             if(vItems.size()==0)
             {
-                vItems.add("ERROR");
+                vItems.add("ERROR:Vector_size_is_0");
                 logger.warn(ri.getName() +": Vector size is 0:");
             }
             fileSelected = true;

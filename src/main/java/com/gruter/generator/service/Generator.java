@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Vector;
 import java.util.regex.Matcher;
@@ -90,13 +91,12 @@ public class Generator {
           }
           Matcher matcher = p.matcher(expr);
           List<String> exprFields = new ArrayList<String>();
-          System.out.print("variables:");
           while(matcher.find()) {
             String variable = expr.substring(matcher.start(), matcher.end());
             exprFields.add(variable);
-            System.out.print("[" + variable + "]");
+            //System.out.print("[" + variable + "]");
           }
-          System.out.println();
+          //System.out.println();
           variables.put(index, exprFields);
         }
         
@@ -137,6 +137,8 @@ public class Generator {
     String dfdDelimiter = dfd.getDelimiter();
     if("\\t".equals(dfdDelimiter)) {
       dfdDelimiter = "\t";
+    } else if("\\s".equals(dfdDelimiter)) {
+      dfdDelimiter = " ";
     }
     String delimiter = "";
     index = -1;
@@ -148,21 +150,20 @@ public class Generator {
       String outputValue = null;
       if("_expression".equals(eachItem.getRandomiserInstanceName())) {
         String expression = eachItem.getExpression();
-        
         List<String> variableList = variables.get(index);
         
-        for(String eachVariable: variableList) {
-          String variableField = eachVariable.substring(1);   //remove $
-          //System.out.println(">>>>>" + eachVariable);
-          expression = expression.replace(eachVariable, generatedFields.get(variableField));
-        }
-        try {
-//          System.out.println("expression:" + expression);
-          Object exprResult = ExpressionEngine.evaluate(expression, expressionContext);
-          outputValue = exprResult.toString();
-        } catch (ExpressionEngineException e) {
-          e.printStackTrace();
-          outputValue = "expression:" + expression + ":" + e.getMessage();
+        if(outputValue == null) {
+          for(String eachVariable: variableList) {
+            String variableField = eachVariable.substring(1);   //remove $
+            expression = expression.replace(eachVariable, generatedFields.get(variableField));
+          }
+          try {
+            Object exprResult = ExpressionEngine.evaluate(expression, expressionContext);
+            outputValue = exprResult.toString();
+          } catch (ExpressionEngineException e) {
+            e.printStackTrace();
+            outputValue = "expression:" + expression + ":" + e.getMessage();
+          }
         }
       } else {
         outputValue = generatedFields.get(eachItem.getFieldName());
@@ -245,11 +246,13 @@ public class Generator {
 //    expr = expr.replace("$f2", "'12345'");
 //    expr = expr.replace("$f3", "'56789'");
     
+    System.out.println("java.util.Local.US");
     ExpressionContext expressionContext = new ExpressionContext();
-    String expr = "true ? 10 : 'Mari'";
+    String expr = "dateFormat(" + System.currentTimeMillis() + ", 'MMM dd', 'Locale.US')";
     Object exprResult = ExpressionEngine.evaluate(expr, expressionContext);
     System.out.println(exprResult.getClass() + "," + exprResult);
     
+   
 //    String f1 = "false";
 //    String f1Name = "$f1";
 //    String expr = "$f1 ? $f2 : $f3";

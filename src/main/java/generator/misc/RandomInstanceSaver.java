@@ -64,13 +64,13 @@ public class RandomInstanceSaver
             if(properties==null) {
               ri.setProperties(new LinkedHashMap());
               logger.warn("Properties are null, has this object been linked in RandomiserInstance?");
-            }
-            keys = properties.keySet();
-            
-            for(String key : keys)
-            {
-                String value = (String) properties.get(key);
-                addElementProperty(key,value,elemRI);
+            } else {
+              keys = properties.keySet();
+              for(String key : keys)
+              {
+                  String value = (String) properties.get(key);
+                  addElementProperty(key,value,elemRI);
+              }
             }
         }
         xmlSaver.writeXMLContent(dom,"conf/Repository.xml");

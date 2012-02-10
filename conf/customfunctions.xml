@@ -13,6 +13,11 @@
 	}
     </function>
     <function>
+		public String copy( String value ) {
+			return value;
+		}
+    </function>    
+    <function>
         public Object iif( Boolean condition, Object whenTrue, Object whenFalse ) {
             return condition == Boolean.TRUE ? whenTrue : whenFalse;
         }
@@ -32,4 +37,15 @@
     		return df.format(time);
     	}
     </function>
+    <function>
+    	public Object dateFormatLocale(Long time, String format, String locale) {
+    		if(!com.gruter.generator.function.ExpressionOasisFunction.dateFormatMap.containsKey(format)) {
+    			com.gruter.generator.function.ExpressionOasisFunction.dateFormatMap.put(format, new java.text.SimpleDateFormat(format, 
+    				(java.util.Locale)com.gruter.generator.function.ExpressionOasisFunction.locales.get(locale)));
+    		} 
+    		java.text.SimpleDateFormat df = (java.text.SimpleDateFormat)com.gruter.generator.function.ExpressionOasisFunction.dateFormatMap.get(format);
+    		
+    		return df.format(time);
+    	}
+    </function>    
 </functions>

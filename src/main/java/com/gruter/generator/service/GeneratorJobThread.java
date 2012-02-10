@@ -106,6 +106,9 @@ public class GeneratorJobThread extends Thread {
         tpsCount = 0;
       }
       lastTouchTime = System.currentTimeMillis();
+      if(recordCount % 100000 == 0) {
+        System.out.println(recordCount + " generated");
+      }
     }
     if(observer != null) {
       observer.dataGenEnd();

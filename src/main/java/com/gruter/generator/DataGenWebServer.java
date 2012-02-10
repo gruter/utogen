@@ -24,7 +24,7 @@ public class DataGenWebServer {
   }
   
   public static void main(String[] args) throws Exception {
-//    args = new String[]{"8990"};
+    args = new String[]{"8990"};
     new DataGenWebServer(args);
   }
 }

@@ -76,7 +76,8 @@ public class RandomDefinitionsBuilder
         }
         catch (Throwable err)
         {
-            logger.error("Error during parsing xml file",err);
+            err.printStackTrace();
+            System.err.println("Error during parsing xml file");
         }
         
         vData = saxHandler.getData();

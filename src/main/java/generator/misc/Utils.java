@@ -80,6 +80,9 @@ public class Utils {
       logger.debug("Name:" + ri.getName());
       logger.debug("Description:" + ri.getDescription());
       logger.debug("RandomiserType:" + ri.getRandomiserType());
+//      System.out.println("Name:" + ri.getName());
+//      System.out.println("Description:" + ri.getDescription());
+//      System.out.println("RandomiserType:" + ri.getRandomiserType());
       li = ri.getProperties();
 
       Set<String> keys;
@@ -88,7 +91,7 @@ public class Utils {
 
         for (String key : keys) {
           String value = (String) li.get(key);
-          logger.debug("Loaded property (key,value): " + key + "," + value);
+          //System.out.println("Loaded property (key,value): " + key + "," + value);
         }
       } else {
         logger.warn("There are no properties for randomiser instance:" + ri.getName());
@@ -377,8 +380,8 @@ public class Utils {
     try {
 
       while ((line = bufReader.readLine()) != null) {
-        if (line.indexOf("//") >= 0)
-          continue;
+//        if (line.indexOf("//") >= 0)
+//          continue;
         vData.add(line);
       }
       fileReader.close();
