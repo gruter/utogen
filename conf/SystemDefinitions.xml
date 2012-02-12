@@ -26,4 +26,5 @@
     <randomiser-type name="SeasonalData" jtype="0" panel="generator.panels.PanelSeasonalDataObjectRandomiser" generator="generator.panels.SeasonalDataObjectRandomiser"/>
     <randomiser-type name="DBColumnRandomiser" jtype="0" panel="com.gruter.generator.randomisers.PanelDBColumnRandomiser" generator="com.gruter.generator.randomisers.DBColumnRandomiser"/>
     <randomiser-type name="ExpressionRandomiser" jtype="0" panel="com.gruter.generator.randomisers.PanelExpressionRandomiser" generator="com.gruter.generator.randomisers.ExpressionRandomiser"/>
+    <randomiser-type name="IPRandomiser" jtype="0" panel="com.gruter.generator.randomisers.PanelIPRandomiser" generator="com.gruter.generator.randomisers.IPRandomiser"/>
 </randomiser-types>
